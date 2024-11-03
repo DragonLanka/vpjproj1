@@ -61,6 +61,14 @@
             pointer-events: none;
         }
 
+
+        .icon {
+            filter: brightness(0) invert(1); /* This makes the icons white */
+            width: 24px; /* Adjust size if needed */
+            height: 24px; /* Adjust size if needed */
+            margin-right: 8px; /* Space between icon and text */
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
