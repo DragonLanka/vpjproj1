@@ -3,92 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vihanga Pahasara - Portfolio</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
-	<link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-	</head>
-<body>
-    
-	<!-- Loading screen -->
-    <div id="loading-screen">
-        <div class="spinner"></div>
-    </div>
+    <meta name="description" content="Select your device type to continue">
+    <title>Device Selection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0a1929;
+            --primary-blue: #1e3d59;
+            --accent-blue: #17c3b2;
+            --cool-purple: #7b2cbf;
+            --cool-cyan: #06b6d4;
+            --text-primary: #ffffff;
+            --transition-speed: 0.3s;
+        }
 
-	
-	<canvas id="canvas"></canvas>
-    
-    <div class="container">
-        <section class="profile-section">
-            <img src="your-photo.jpg" alt="Vihanga Pahasara" class="profile-pic">
-            <h1>Vihanga Pahasara</h1>
-            <p>Web developer, graphic designer, video editor,etc and Founder, Director, CEO at V-Falcon and Dragon Lanka. Follow me on my social platforms!</p>
-        </section>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <section class="social-media">
-            <h2>Connect with Me</h2>
-            <div class="social-links">
-                <a href="https://youtube.com/@dragonlanka" class="btn social-btn" target="_blank">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.3.0/youtube.svg" alt="YouTube" class="icon">
-                    YouTube
-                </a>
-                <a href="https://facebook.com/profile.php?id=61558370159578" class="btn social-btn" target="_blank">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.3.0/facebook.svg" alt="Facebook" class="icon">
-                    Facebook
-                </a>
-                <a href="https://twitter.com/jhmvihanga54" class="btn social-btn" target="_blank">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.3.0/twitter.svg" alt="Twitter" class="icon">
-                    Twitter
-                </a>
-                <a href="https://www.tiktok.com/@jhmvihanga" class="btn social-btn" target="_blank">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.3.0/tiktok.svg" alt="TikTok" class="icon">
-                    TikTok
-                </a>
-                <a href="https://pin.it/4VkjI3oZ0" class="btn social-btn" target="_blank">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.3.0/pinterest.svg" alt="Pinterest" class="icon">
-                    Pinterest
-                </a>
-                <a href="https://www.linkedin.com/in/vihanga-pahasara-8458712b9" class="btn social-btn" target="_blank">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.3.0/linkedin.svg" alt="LinkedIn" class="icon">
-                    LinkedIn
-                </a>
-                <a href="https://www.instagram.com/vihangapahasara54/" class="btn social-btn" target="_blank">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.3.0/instagram.svg" alt="Instagram" class="icon">
-                    Instagram
-                </a>
-                <a href="https://dragonlankablog1.blogspot.com/" class="btn social-btn" target="_blank">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.3.0/blogger.svg" alt="Blogger" class="icon">
-                    Blogger
-                </a>
-            </div>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--primary-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 1rem;
+        }
+
+        .container {
+            text-align: center;
+            background-color: var(--primary-blue);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            width: 400px;
+            transform: translateY(0);
+            transition: transform var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cool-cyan), var(--cool-purple));
+        }
+
+        .container h1 {
+            font-size: 1.75em;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.3s forwards;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            background-color: var(--cool-cyan);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background-color: var(--cool-purple);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn i {
+            font-size: 1.3em;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .btn:hover i {
+            transform: scale(1.1);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1em;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Accessibility */
+        .btn:focus {
+            outline: 3px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+
+        /* Reduce Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .btn, .btn::after, .btn i {
+                transition: none;
+            }
             
-        </section>
-        <section class="apps-tools">
-            <h2>Dragon Lanka Tools and Apps</h2>
-            <div class="apps-list">
-                <div class="app-item">
-                    <h3>Speech to Text Tool</h3>
-                    <p>This application can be used to convert a Sinhala, English audio or video file into a text file according to your requirement.</p>
-                    <a href="https://dragonlankablog1.blogspot.com/2024/09/speech-to-text-tool-download.html" class="btn" target="_blank">Learn More</a>
-                </div>
-                <div class="app-item">
-                    <h3>Dragon Lanka Blog App</h3>
-                    <p>Dragon Lanka Blog. NOW IN APP.</p>
-                    <a href="https://dragonlankablog1.blogspot.com/2024/08/dragon-lanka-blog-app-download-now.html" class="btn" target="_blank">Learn More</a>
-                </div>
-				<div class="apps-list">
-                <div class="app-item">
-                    <h3>Dragon Lanka Blog Site</h3>
-                    <p>dragonlankablog1.blogspot.com</p>
-                    <a href="https://dragonlankablog1.blogspot.com" class="btn" target="_blank">Learn More</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            © 2024 Dragon Lanka. All Rights Reserved.
-        </footer>
+            .container h1, .btn-container {
+                animation: none;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Your Device</h1>
+        <div class="btn-container">
+            <button class="btn" onclick="openFolder('mobile')" aria-label="Select Mobile Phone">
+                <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                Mobile Phone
+            </button>
+            <button class="btn" onclick="openFolder('computer')" aria-label="Select Computer">
+                <i class="fas fa-desktop" aria-hidden="true"></i>
+                Computer
+            </button>
+        </div>
     </div>
-	</body>
-	<script src="script.js"></script>
+    <script>
+        function openFolder(folder) {
+            const targetPath = `./${folder}/index.html`;
+            // Add loading state
+            const btn = event.currentTarget;
+            btn.style.opacity = '0.7';
+            btn.style.cursor = 'wait';
+            
+            // Simulate loading (remove in production)
+            setTimeout(() => {
+                window.location.href = targetPath;
+            }, 300);
+        }
+
+        // Prevent double-clicking
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.disabled) {
+                    e.preventDefault();
+                    return;
+                }
+                this.disabled = true;
+                setTimeout(() => this.disabled = false, 1000);
+            });
+        });
+    </script>
+</body>
 </html>

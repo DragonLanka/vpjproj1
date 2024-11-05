@@ -8,7 +8,7 @@ const canvas = document.getElementById('canvas');
     setTimeout(() => {
         loadingScreen.style.display = 'none';
         mainContent.style.display = 'block';
-    }, 3000);  // 5 seconds delay
+    }, 1000);  // 5 seconds delay
 });
 
         // Set canvas size

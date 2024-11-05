@@ -1,3 +1,3 @@
 # vpjproj1
 
-link : dragonlanka.github.io/vpjproj1
+link : https://dragonlanka.github.io/vpjproj1/
